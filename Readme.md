@@ -31,10 +31,10 @@ Pengajar ↔ Jadwal Pengajaran: Satu pengajar dapat memiliki banyak jadwal penga
 Kelas ↔ Jadwal Pengajaran: Satu kelas dapat memiliki banyak jadwal pengajaran.
 
 Mata Pelajaran ↔ Jadwal Pengajaran: Satu mata pelajaran dapat diajarkan dalam banyak jadwal pengajaran.
-KOMPASIANA
+
 
 Relasi ini memungkinkan sistem untuk mengatur dan mengelola jadwal pengajaran dengan efisien, memastikan bahwa setiap pengajar, kelas, dan mata pelajaran terintegrasi dengan baik dalam jadwal yang telah ditentukan.
-KOMPASIANA
+
 
 Struktur ini dapat diimplementasikan menggunakan framework Laravel 12 dan Filament versi 3 untuk membangun aplikasi web yang responsif dan user-friendly. Dengan menggunakan Laravel, Anda dapat memanfaatkan fitur-fitur seperti Eloquent ORM untuk memudahkan pengelolaan relasi antar tabel, sementara Filament dapat digunakan untuk membangun antarmuka admin yang intuitif.
 
