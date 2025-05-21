@@ -1,0 +1,110 @@
+<?php
+
+// 1. Migration untuk tabel data guru
+// File: database/migrations/xxxx_xx_xx_create_gurus_table.php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+    public function up(): void
+    {
+        Schema::create('gurus', function (Blueprint $table) {
+            $table->id();
+            $table->string('nama');
+            $table->string('nip')->unique();
+            $table->string('email')->unique();
+            $table->text('alamat')->nullable();
+            $table->string('telepon')->nullable();
+            $table->string('foto')->nullable();
+            $table->timestamps();
+        });
+    }
+
+    public function down(): void
+    {
+        Schema::dropIfExists('gurus');
+    }
+};
+
+// 2. Model Guru
+// File: app/Models/Guru.php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Guru extends Model
+{
+    protected $fillable = [
+        'nama', 'nip', 'email', 'alamat', 'telepon', 'foto'
+    ];
+}
+
+// 3. Filament Resource
+// Command: php artisan make:filament-resource Guru
+
+// File: app/Filament/Resources/GuruResource.php
+namespace App\Filament\Resources;
+
+use App\Filament\Resources\GuruResource\Pages;
+use App\Models\Guru;
+use Filament\Forms;
+use Filament\Tables;
+use Filament\Resources\Form;
+use Filament\Resources\Table;
+use Filament\Resources\Resource;
+
+class GuruResource extends Resource
+{
+    protected static ?string $model = Guru::class;
+
+    public static function form(Form $form): Form
+    {
+        return $form
+            ->schema([
+                Forms\Components\TextInput::make('nama')->required(),
+                Forms\Components\TextInput::make('nip')->required()->unique(),
+                Forms\Components\TextInput::make('email')->email()->required(),
+                Forms\Components\Textarea::make('alamat'),
+                Forms\Components\TextInput::make('telepon'),
+                Forms\Components\FileUpload::make('foto')->directory('foto-guru')->image(),
+            ]);
+    }
+
+    public static function table(Table $table): Table
+    {
+        return $table
+            ->columns([
+                Tables\Columns\TextColumn::make('nama'),
+                Tables\Columns\TextColumn::make('nip'),
+                Tables\Columns\TextColumn::make('email'),
+            ])
+            ->filters([
+                // Tambahkan filter jika diperlukan
+            ]);
+    }
+
+    public static function getPages(): array
+    {
+        return [
+            'index' => Pages\ListGurus::route('/'),
+            'create' => Pages\CreateGuru::route('/create'),
+            'edit' => Pages\EditGuru::route('/{record}/edit'),
+        ];
+    }
+}
+
+// 4. Konfigurasi tambahan keamanan Laravel
+
+// File: config/session.php
+// - ubah lifetime session, secure cookie
+// File: .env
+// - pastikan APP_ENV=production dan APP_DEBUG=false
+// Middleware tambahan seperti spatie/laravel-csp atau laravel sanctum untuk autentikasi dapat ditambahkan sesuai kebutuhan.
+
+// Untuk autentikasi bisa gunakan Laravel Breeze: 
+// php artisan breeze:install
+// npm install && npm run dev
+// php artisan migrate
