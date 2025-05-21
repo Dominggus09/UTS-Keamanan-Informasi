@@ -1,27 +1,41 @@
-Defanda Yeremia - 20230801205
+Dominggus Louk _ 20230801125
 
 # Tema Data Guru
 
 ## Overview 
+🧾 Ringkasan
+Sistem ini dirancang untuk mengelola informasi terkait pengajar, mata pelajaran, kelas, dan jadwal pengajaran. Setiap komponen saling terhubung untuk memastikan pengelolaan data yang efisien dan terstruktur.
 
-Sistem ini terdiri dari beberapa data utama yang saling terhubung, yaitu:
+🧱 Komponen Utama:
+Pengajar: Menyimpan informasi seperti nama, NIP, kontak, dan alamat.
 
-- **Guru**: Menyimpan data guru seperti nama, NIP, telepon, dan alamat.
-- **Mapel**: Menyimpan daftar mata pelajaran yang diajarkan.
-- **Kelas**: Menyimpan data kelas beserta tingkatannya.
-- **Jadwal Mengajar**: Menyimpan jadwal guru mengajar, termasuk hari, jam, kelas, dan mapel yang diajarkan.
+Mata Pelajaran: Daftar mata pelajaran yang tersedia di institusi.
 
-## Struktur Data & Relasi
+Kelas: Informasi tentang kelas, termasuk tingkat dan nama kelas.
 
-![alt text](img/download.jpg)
+Jadwal Pengajaran: Mengatur waktu pengajaran pengajar, termasuk hari, jam, kelas, dan mata pelajaran yang diajarkan.
 
-### Entitas Utama:
-1. **Guru**
-2. **Mapel** (Mata Pelajaran)
-3. **Kelas**
-4. **Jadwal Mengajar** (Pivot Table antara Guru, Mapel, dan Kelas)
+🧩 Struktur Data & Relasi
+📌 Entitas:
+Pengajar
 
-### Relasi:
-- Satu guru dapat mengajar banyak kelas.
-- Satu kelas memiliki beberapa guru dengan mapel berbeda.
-- Jadwal mengajar menghubungkan guru, mapel, dan kelas dalam satu entitas waktu.
+Mata Pelajaran
+
+Kelas
+
+Jadwal Pengajaran (sebagai tabel penghubung antara Pengajar, Mata Pelajaran, dan Kelas)
+
+🔗 Relasi:
+Pengajar ↔ Jadwal Pengajaran: Satu pengajar dapat memiliki banyak jadwal pengajaran.
+
+Kelas ↔ Jadwal Pengajaran: Satu kelas dapat memiliki banyak jadwal pengajaran.
+
+Mata Pelajaran ↔ Jadwal Pengajaran: Satu mata pelajaran dapat diajarkan dalam banyak jadwal pengajaran.
+KOMPASIANA
+
+Relasi ini memungkinkan sistem untuk mengatur dan mengelola jadwal pengajaran dengan efisien, memastikan bahwa setiap pengajar, kelas, dan mata pelajaran terintegrasi dengan baik dalam jadwal yang telah ditentukan.
+KOMPASIANA
+
+Struktur ini dapat diimplementasikan menggunakan framework Laravel 12 dan Filament versi 3 untuk membangun aplikasi web yang responsif dan user-friendly. Dengan menggunakan Laravel, Anda dapat memanfaatkan fitur-fitur seperti Eloquent ORM untuk memudahkan pengelolaan relasi antar tabel, sementara Filament dapat digunakan untuk membangun antarmuka admin yang intuitif.
+
+Jika Anda memerlukan bantuan lebih lanjut dalam implementasi atau pengembangan fitur tambahan, jangan ragu untuk bertanya.
